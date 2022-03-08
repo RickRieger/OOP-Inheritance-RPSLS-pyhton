@@ -6,27 +6,23 @@ player = Player()
 
 class Game:
     def __init__(self):
-        pass
+        self.player_1 = Human()
+        self.player_2 = Human()
+
 
     def run_game(self):
         self.show_greeting()
         single_player = self.is_single_player_true()
-        player_one_score = 0
-        player_two_score = 0
         if single_player == True:
-            player_one = Human()
-            player_two = Ai()
-        else:
-            player_one = Human()
-            player_two = Human()
-        while player_one_score < 2 and player_two_score < 2:
-            winner = self.compare_gestures(player_one.choose_gesture('Player One'), player_two.choose_gesture('Player Two'))
+            self.player_2 = Ai()
+        while self.player_1.score < 2 and self.player_2.score < 2:
+            winner = self.compare_gestures(self.player_1.choose_gesture('Player One'), self.player_2.choose_gesture('Player Two'))
             if winner == 'Player 1 won':
-                player_one_score += 1
+                self.player_1.score += 1
             elif winner == 'Player 2 won':
-                player_two_score += 1
+                self.player_2.score += 1
             print(f'{winner} for this round!!\n')
-        self.display_winner(player_one_score, player_two_score)
+        self.display_winner(self.player_1.score, self.player_2.score)
             
           
     def show_greeting(self):
@@ -61,7 +57,7 @@ class Game:
 
         if result == 1:
             return "Player 1 won"
-            
+
         else: return "Player 2 won"    
 
 
