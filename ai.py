@@ -8,5 +8,6 @@ class Ai(Player):
     def choose_gesture(self):
         random_number = random.randint(0, 4)
         computer_choice = self.gestures[random_number]
+        print(f'The computer chose {computer_choice} for this round!')
         return computer_choice
 

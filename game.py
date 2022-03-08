@@ -50,27 +50,21 @@ class Game:
     def compare_gestures(self, gest1, gest2):
         if gest1 == gest2:
             return "It is a draw"
-        elif gest1 == 'rock' and (gest2  == 'scissors' or gest2  == 'lizard'):
-            return "Player 1 won"  
-        elif gest1 == 'paper' and   (gest2 == 'rock' or gest2  == 'spock'):
+
+        gestures = {'rock':['scissors', 'lizard'],
+                'paper':['rock', 'spock'],
+                'scissors':['paper', 'lizard'],
+                'lizard':['spock', 'paper'],
+                'spock':['scissors', 'rock']}
+
+        result = gestures[gest1].count(gest2)
+
+        if result == 1:
             return "Player 1 won"
-        elif gest1 == 'scissors' and  (gest2 == 'paper' or gest2  == 'lizard'):
-            return "Player 1 won"
-        elif gest1 == 'lizard' and   (gest2 == 'spock' or gest2  == 'paper'):
-            return "Player 1 won"
-        elif gest1 == 'spock' and  (gest2 == 'scissors' or gest2  == 'rock'):
-            return "Player 1 won"
+            
         else: return "Player 2 won"    
 
-        # p1 = player.gestures.index(gest1)
-        # p2 = player.gestures.index(gest2)
-        # print()
-        # if (p1 + 1) % 3 == p2:
-        #     return "Player 2 won"
-        # elif p1 == p2:
-        #     return "It is a draw"
-        # else:
-        #     return "Player 1 won"
+
 
         
     def display_winner(self, player_one_score, player_two_score):
@@ -82,4 +76,4 @@ class Game:
 
 
     
-   
+
