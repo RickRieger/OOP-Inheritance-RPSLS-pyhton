@@ -1,4 +1,6 @@
 from player import Player
+from human import Human
+from ai import Ai
 player = Player()
 
 
@@ -8,11 +10,25 @@ class Game:
 
     def run_game(self):
         # self.show_greeting()
-        # single_player = self.is_single_player_true()
-        print(self.compare_gestures('spock', 'lizard'))
-        
-       
-
+        single_player = self.is_single_player_true()
+        player_one_score = 0
+        player_two_score = 0
+        if single_player == True:
+            player_one = Human()
+            player_two = Ai()
+        else:
+            player_one = Human()
+            player_two = Human()
+        while player_one_score < 2 and player_two_score < 2:
+            winner = self.compare_gestures(player_one.choose_gesture('Player One'), player_two.choose_gesture())
+            if winner == 'Player 1 won':
+                player_one_score += 1
+            elif winner == 'Player 2 won':
+                player_two_score += 1
+            print(f'{winner} for this round!!')
+        self.display_winner(player_one_score, player_two_score)
+            
+          
     def show_greeting(self):
         print('Welcome to rock, paper, scissors with a twist!\n')
         print('We added two more choices:\nLizard and Spock\n\n')
@@ -57,10 +73,13 @@ class Game:
         #     return "Player 1 won"
 
         
+    def display_winner(self, player_one_score, player_two_score):
+        if player_one_score > player_two_score:
+            print('Player One Wins the Game!')
+        else:
+            print('Player Two Wins the Game!')
+        
 
-    def check_scores_and_determine_winner(self):
-        pass
 
-    def display_winner(self):
-        pass
+    
    
