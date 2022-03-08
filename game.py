@@ -9,7 +9,7 @@ class Game:
         pass
 
     def run_game(self):
-        # self.show_greeting()
+        self.show_greeting()
         single_player = self.is_single_player_true()
         player_one_score = 0
         player_two_score = 0
@@ -20,12 +20,12 @@ class Game:
             player_one = Human()
             player_two = Human()
         while player_one_score < 2 and player_two_score < 2:
-            winner = self.compare_gestures(player_one.choose_gesture('Player One'), player_two.choose_gesture())
+            winner = self.compare_gestures(player_one.choose_gesture('Player One'), player_two.choose_gesture('Player Two'))
             if winner == 'Player 1 won':
                 player_one_score += 1
             elif winner == 'Player 2 won':
                 player_two_score += 1
-            print(f'{winner} for this round!!')
+            print(f'{winner} for this round!!\n')
         self.display_winner(player_one_score, player_two_score)
             
           
@@ -33,14 +33,14 @@ class Game:
         print('Welcome to rock, paper, scissors with a twist!\n')
         print('We added two more choices:\nLizard and Spock\n\n')
         print('Here are the rules:\n')
-        print("Scissors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n(and as it always has) Rock crushes Scissors")
+        print("Scissors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n(and as it always has) Rock crushes Scissors\n")
         
 
     def is_single_player_true(self):
         player_choice = ''
         while player_choice != '1' and player_choice != '2':
-            player_choice = input('Please enter "1" for a single player game, or "2" for a multi player game:')
-            if player_choice != '1' or player_choice != '2':
+            player_choice = input('Please enter "1" for a single player game, or "2" for a multi player game: ')
+            if player_choice != '1' and player_choice != '2':
                 print('Please enter correct value')
         if player_choice == '1':
               return True
